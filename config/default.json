@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://anthonylin198:anthonylin198@ututor.y6ydp.mongodb.net/UTutor?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://anthonylin198:anthonylin198@ututor.y6ydp.mongodb.net/UTutor?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
 }
