@@ -3,7 +3,7 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-// Connect Database
+// Connect Database - in the config folder
 connectDB();
 
 app.get("/", (req, res) => res.send("API Running"));
