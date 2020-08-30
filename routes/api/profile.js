@@ -112,4 +112,40 @@ router.get("/user/:user_id", async (req, res) => {
   }
 });
 
+// @route GET api/profile/user/:user_id
+// @desc Get profile by user ID
+// @access Public
+router.get("/user/:user_id", async (req, res) => {
+  try {
+    // getting the profile from the url -- param
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate("user", ["name"]);
+
+    if (!profile) return res.status(400).json({ msg: "Profile not found" });
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({ msg: "Profile not found" });
+    }
+    res.status(500).send("Servor Error");
+  }
+});
+
+// @route DELETE api/profile
+// @desc Delete the user profile AND account -- based off the logged in user
+// @access Private
+router.delete("/", auth, async (req, res) => {
+  try {
+    // Remove the profile
+    await Profile.findOneAndRemove({ user: req.user.id });
+    await User.findOneAndRemove({ _id: req.user.id });
+    res.json({ msg: "User Deleted" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Servor Error");
+  }
+});
+
 module.exports = router;
