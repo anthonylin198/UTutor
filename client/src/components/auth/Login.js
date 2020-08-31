@@ -104,7 +104,7 @@ export default function SignInSide() {
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
+              // autoComplete="email"
               autoFocus
               value={email}
               onChange={(e) => {
@@ -120,7 +120,7 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
+              // autoComplete="current-password"
               value={password}
               onChange={(e) => {
                 onChange(e);
