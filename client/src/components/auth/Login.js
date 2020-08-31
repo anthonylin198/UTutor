@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Material UI imports
@@ -62,6 +62,23 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+  // setup hook
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  // create onChange function
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log("success");
+  };
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -74,7 +91,11 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form
+            className={classes.form}
+            onSubmit={(e) => onSubmit(e)}
+            noValidate
+          >
             <TextField
               variant="outlined"
               margin="normal"
@@ -85,6 +106,10 @@ export default function SignInSide() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e) => {
+                onChange(e);
+              }}
             />
             <TextField
               variant="outlined"
@@ -96,6 +121,10 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => {
+                onChange(e);
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -112,13 +141,13 @@ export default function SignInSide() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link
+                {/* <Link
                   href="#"
                   variant="body2"
                   style={{ textDecoration: "none" }}
                 >
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link

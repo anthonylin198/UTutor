@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Material UI imports
@@ -62,6 +62,49 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+  // setup hook
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const { name, email, password, confirmPassword } = formData;
+
+  // create onChange function
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  // sending data to database and creating user
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (password != confirmPassword) {
+      console.log("Passwords do not match");
+    } else {
+      console.log("success");
+      // const newUser = {
+      //   name,
+      //   email,
+      //   password,
+      // };
+      // try {
+      //   const config = {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   };
+
+      //   const body = JSON.stringify(newUser);
+      //   const res = await axios.post("/api/users", body, config);
+      //   console.log(res.data);
+      // } catch (err) {
+      //   console.error(err.response);
+      // }
+      // console.log(formData);
+    }
+  };
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -74,7 +117,26 @@ export default function SignInSide() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form
+            className={classes.form}
+            onSubmit={(e) => onSubmit(e)}
+            noValidate
+          >
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Full Name"
+              name="name"
+              // autoComplete="name"
+              autoFocus
+              value={name}
+              onChange={(e) => {
+                onChange(e);
+              }}
+            />
             <TextField
               variant="outlined"
               margin="normal"
@@ -83,8 +145,12 @@ export default function SignInSide() {
               id="email"
               label="Email Address"
               name="email"
-              autoComplete="email"
+              // autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e) => {
+                onChange(e);
+              }}
             />
             <TextField
               variant="outlined"
@@ -95,7 +161,26 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
+              // autoComplete="current-password"
+              value={password}
+              onChange={(e) => {
+                onChange(e);
+              }}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              id="confirmPassword"
+              // autoComplete="current-password"
+              value={confirmPassword}
+              onChange={(e) => {
+                onChange(e);
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -108,17 +193,17 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Register
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link
+                {/* <Link
                   href="#"
                   variant="body2"
                   style={{ textDecoration: "none" }}
                 >
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link to="/" style={{ textDecoration: "none" }} variant="body2">
