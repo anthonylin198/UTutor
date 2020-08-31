@@ -11,7 +11,7 @@ import "./App.css";
 const App = () => (
   <Router>
     <Fragment>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Login} />
       <Route exact path="/register" component={Register} />
     </Fragment>
   </Router>
