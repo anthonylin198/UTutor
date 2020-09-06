@@ -1,5 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { setAlert } from "../../actions/alert";
+import PropTypes from "prop-types";
 
 // Material UI imports
 import Avatar from "@material-ui/core/Avatar";
@@ -59,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Register() {
+function Register({ setAlert }) {
   const classes = useStyles();
 
   // setup hook
@@ -79,29 +82,10 @@ export default function Register() {
   // sending data to database and creating user
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password != confirmPassword) {
-      console.log("Passwords do not match");
+    if (password !== confirmPassword) {
+      setAlert("Passwords do not match");
     } else {
       console.log("success");
-      // const newUser = {
-      //   name,
-      //   email,
-      //   password,
-      // };
-      // try {
-      //   const config = {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   };
-
-      //   const body = JSON.stringify(newUser);
-      //   const res = await axios.post("/api/users", body, config);
-      //   console.log(res.data);
-      // } catch (err) {
-      //   console.error(err.response);
-      // }
-      // console.log(formData);
     }
   };
 
@@ -220,3 +204,9 @@ export default function Register() {
     </Grid>
   );
 }
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Register);
