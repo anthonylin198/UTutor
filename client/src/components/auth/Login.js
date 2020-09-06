@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+
+// Redux
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../../actions/auth";
 
 // Material UI imports
 import Avatar from "@material-ui/core/Avatar";
@@ -59,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+const Login = ({ login, isAuthenticated }) => {
   const classes = useStyles();
 
   // setup hook
@@ -76,8 +81,13 @@ export default function SignInSide() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("success");
+    login(email, password);
   };
+
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to="home" />;
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -167,4 +177,15 @@ export default function SignInSide() {
       </Grid>
     </Grid>
   );
-}
+};
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);
