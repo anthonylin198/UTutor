@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 
 // Material UI imports
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Register({ setAlert }) {
+function Register({ setAlert, register }) {
   const classes = useStyles();
 
   // setup hook
@@ -85,7 +86,7 @@ function Register({ setAlert }) {
     if (password !== confirmPassword) {
       setAlert("Passwords do not match");
     } else {
-      console.log("success");
+      register({ name, email, password });
     }
   };
 
@@ -207,6 +208,7 @@ function Register({ setAlert }) {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
