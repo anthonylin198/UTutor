@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 // // nodejs library that concatenates classes
 // import classNames from "classnames";
 // // react component for creating beautiful carousel
@@ -29,6 +29,14 @@
 
 // const useStyles = makeStyles(headersStyle);
 
+export default function Home() {
+  return (
+    <div>
+      <h1>hello</h1>
+      <h2>yo</h2>
+    </div>
+  );
+}
 // export default function Home({ ...rest }) {
 //   const classes = useStyles();
 //   const settings = {

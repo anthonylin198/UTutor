@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Alert from "./components/layout/Alert";
-// import Home from "./components/home/Home";
+import Home from "./components/home/Home";
 
 // import Redux
 import { Provider } from "react-redux";
@@ -29,6 +29,7 @@ const App = () => {
           <Alert />
           <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/home" component={Home} />
         </Fragment>
       </Router>
     </Provider>
