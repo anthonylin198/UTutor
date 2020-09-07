@@ -8,7 +8,7 @@ import HeaderLinks from "../material-ui/HeaderLinks";
 // sections of this Page
 import SectionHeaders from "./Sections/SectionHeaders.js";
 // import SectionFeatures from "./Sections/SectionFeatures.js";
-// import SectionBlogs from "./Sections/SectionBlogs.js";
+import SectionBlogs from "./Sections/SectionBlogs.js";
 // import SectionTeams from "./Sections/SectionTeams.js";
 // import SectionProjects from "./Sections/SectionProjects.js";
 // import SectionPricing from "./Sections/SectionPricing.js";
@@ -27,35 +27,35 @@ export default function Home() {
     if (window.location.href.lastIndexOf("#") > 0) {
       document.getElementById(href).scrollIntoView();
     }
-    window.addEventListener("scroll", updateView);
-    updateView();
-    return function cleanup() {
-      window.removeEventListener("scroll", updateView);
-    };
+    // window.addEventListener("scroll", updateView);
+    // updateView();
+    // return function cleanup() {
+    //   window.removeEventListener("scroll", updateView);
+    // };
   });
-  const updateView = () => {
-    var contentSections = document.getElementsByClassName("cd-section");
-    var navigationItems = document
-      .getElementById("cd-vertical-nav")
-      .getElementsByTagName("a");
+  // const updateView = () => {
+  //   var contentSections = document.getElementsByClassName("cd-section");
+  //   var navigationItems = document
+  //     .getElementById("cd-vertical-nav")
+  //     .getElementsByTagName("a");
 
-    for (let i = 0; i < contentSections.length; i++) {
-      var activeSection =
-        parseInt(navigationItems[i].getAttribute("data-number"), 10) - 1;
-      if (
-        contentSections[i].offsetTop - window.innerHeight / 2 <
-          window.pageYOffset &&
-        contentSections[i].offsetTop +
-          contentSections[i].scrollHeight -
-          window.innerHeight / 2 >
-          window.pageYOffset
-      ) {
-        navigationItems[activeSection].classList.add("is-selected");
-      } else {
-        navigationItems[activeSection].classList.remove("is-selected");
-      }
-    }
-  };
+  //   for (let i = 0; i < contentSections.length; i++) {
+  //     var activeSection =
+  //       parseInt(navigationItems[i].getAttribute("data-number"), 10) - 1;
+  //     if (
+  //       contentSections[i].offsetTop - window.innerHeight / 2 <
+  //         window.pageYOffset &&
+  //       contentSections[i].offsetTop +
+  //         contentSections[i].scrollHeight -
+  //         window.innerHeight / 2 >
+  //         window.pageYOffset
+  //     ) {
+  //       navigationItems[activeSection].classList.add("is-selected");
+  //     } else {
+  //       navigationItems[activeSection].classList.remove("is-selected");
+  //     }
+  //   }
+  // };
   const easeInOutQuad = (t, b, c, d) => {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
@@ -94,6 +94,7 @@ export default function Home() {
       /> */}
       <div className={classes.main}>
         <SectionHeaders id="headers" />
+        <SectionBlogs id="blogs" />
         {/* <SectionFeatures id="features" />
         <SectionBlogs id="blogs" />
         <SectionTeams id="teams" />
@@ -102,7 +103,7 @@ export default function Home() {
         <SectionTestimonials id="testimonials" />
         <SectionContacts id="contacts" /> */}
       </div>
-      <nav id="cd-vertical-nav">
+      {/* <nav id="cd-vertical-nav">
         <ul>
           <li>
             <a
@@ -273,7 +274,7 @@ export default function Home() {
             </a>
           </li>
         </ul>
-      </nav>
+      </nav> */}
     </div>
   );
 }
