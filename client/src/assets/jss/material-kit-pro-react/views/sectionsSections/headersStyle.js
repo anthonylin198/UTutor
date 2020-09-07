@@ -29,12 +29,12 @@ const headersSection = (theme) => ({
     "& h1, & h4, & h6": {
       color: whiteColor,
     },
-    paddingTop: "20vh",
+    paddingTop: "5vh",
   },
   title,
   pageHeader: {
     position: "relative",
-    height: "70vh",
+    height: "100vh",
     maxHeight: "1600px",
     backgroundPosition: "50%",
     backgroundSize: "cover",
