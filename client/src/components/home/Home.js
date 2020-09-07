@@ -1,534 +1,278 @@
 import React from "react";
-// // nodejs library that concatenates classes
-// import classNames from "classnames";
-// // react component for creating beautiful carousel
-// import Carousel from "react-slick";
-// // @material-ui/core components
-// import { makeStyles } from "@material-ui/core/styles";
-// import List from "@material-ui/core/List";
-// import ListItem from "@material-ui/core/ListItem";
-// // @material-ui/icons
-// import Share from "@material-ui/icons/Share";
-// import ShoppingCart from "@material-ui/icons/ShoppingCart";
-// // core components
-// import Header from "components/Header/Header.js";
-// import Button from "components/CustomButtons/Button.js";
-// import GridContainer from "components/Grid/GridContainer.js";
-// import GridItem from "components/Grid/GridItem.js";
-// import Card from "components/Card/Card.js";
-// import CardBody from "components/Card/CardBody.js";
-// import CustomInput from "components/CustomInput/CustomInput.js";
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+// @material-ui/icons
+// core components
+import Header from "components/Header/Header.js";
+import HeaderLinks from "components/Header/HeaderLinks.js";
+// sections of this Page
+import SectionHeaders from "./Sections/SectionHeaders.js";
+// import SectionFeatures from "./Sections/SectionFeatures.js";
+// import SectionBlogs from "./Sections/SectionBlogs.js";
+// import SectionTeams from "./Sections/SectionTeams.js";
+// import SectionProjects from "./Sections/SectionProjects.js";
+// import SectionPricing from "./Sections/SectionPricing.js";
+// import SectionTestimonials from "./Sections/SectionTestimonials.js";
+// import SectionContacts from "./Sections/SectionContacts.js";
 
-// import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle.js";
+import sectionsPageStyle from "assets/jss/material-kit-pro-react/views/sectionsPageStyle.js";
 
-// import bg12 from "assets/img/bg12.jpg";
-// import office2 from "assets/img/examples/office2.jpg";
-// import dg1 from "assets/img/dg1.jpg";
-// import dg2 from "assets/img/dg2.jpg";
-// import dg3 from "assets/img/dg3.jpg";
-
-// const useStyles = makeStyles(headersStyle);
+const useStyles = makeStyles(sectionsPageStyle);
 
 export default function Home() {
+  React.useEffect(() => {
+    var href = window.location.href.substring(
+      window.location.href.lastIndexOf("#") + 1
+    );
+    if (window.location.href.lastIndexOf("#") > 0) {
+      document.getElementById(href).scrollIntoView();
+    }
+    window.addEventListener("scroll", updateView);
+    updateView();
+    return function cleanup() {
+      window.removeEventListener("scroll", updateView);
+    };
+  });
+  const updateView = () => {
+    var contentSections = document.getElementsByClassName("cd-section");
+    var navigationItems = document
+      .getElementById("cd-vertical-nav")
+      .getElementsByTagName("a");
+
+    for (let i = 0; i < contentSections.length; i++) {
+      var activeSection =
+        parseInt(navigationItems[i].getAttribute("data-number"), 10) - 1;
+      if (
+        contentSections[i].offsetTop - window.innerHeight / 2 <
+          window.pageYOffset &&
+        contentSections[i].offsetTop +
+          contentSections[i].scrollHeight -
+          window.innerHeight / 2 >
+          window.pageYOffset
+      ) {
+        navigationItems[activeSection].classList.add("is-selected");
+      } else {
+        navigationItems[activeSection].classList.remove("is-selected");
+      }
+    }
+  };
+  const easeInOutQuad = (t, b, c, d) => {
+    t /= d / 2;
+    if (t < 1) return (c / 2) * t * t + b;
+    t--;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
+  };
+  const smoothScroll = (target) => {
+    var targetScroll = document.getElementById(target);
+    scrollGo(document.documentElement, targetScroll.offsetTop, 1250);
+  };
+  const scrollGo = (element, to, duration) => {
+    var start = element.scrollTop,
+      change = to - start,
+      currentTime = 0,
+      increment = 20;
+
+    var animateScroll = function () {
+      currentTime += increment;
+      var val = easeInOutQuad(currentTime, start, change, duration);
+      element.scrollTop = val;
+      if (currentTime < duration) {
+        setTimeout(animateScroll, increment);
+      }
+    };
+    animateScroll();
+  };
+  const classes = useStyles();
   return (
     <div>
-      <h1>hello</h1>
-      <h2>yo</h2>
+      <Header
+        color="info"
+        brand="Material Kit PRO React"
+        links={<HeaderLinks dropdownHoverColor="info" />}
+        fixed
+      />
+      <div className={classes.main}>
+        <SectionHeaders id="headers" />
+        {/* <SectionFeatures id="features" />
+        <SectionBlogs id="blogs" />
+        <SectionTeams id="teams" />
+        <SectionProjects id="projects" />
+        <SectionPricing id="pricing" />
+        <SectionTestimonials id="testimonials" />
+        <SectionContacts id="contacts" /> */}
+      </div>
+      <nav id="cd-vertical-nav">
+        <ul>
+          <li>
+            <a
+              href="#headers"
+              data-number="1"
+              className="is-selected"
+              onClick={(e) => {
+                var isMobile = navigator.userAgent.match(
+                  /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i
+                );
+                if (isMobile) {
+                  // if we are on mobile device the scroll into view will be managed by the browser
+                } else {
+                  e.preventDefault();
+                  smoothScroll("headers");
+                }
+              }}
+            >
+              <span className="cd-dot" />
+              <span className="cd-label">Headers</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#features"
+              data-number="2"
+              className=""
+              onClick={(e) => {
+                var isMobile = navigator.userAgent.match(
+                  /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i
+                );
+                if (isMobile) {
+                  // if we are on mobile device the scroll into view will be managed by the browser
+                } else {
+                  e.preventDefault();
+                  smoothScroll("features");
+                }
+              }}
+            >
+              <span className="cd-dot" />
+              <span className="cd-label">Features</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#blogs"
+              data-number="3"
+              className=""
+              onClick={(e) => {
+                var isMobile = navigator.userAgent.match(
+                  /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i
+                );
+                if (isMobile) {
+                  // if we are on mobile device the scroll into view will be managed by the browser
+                } else {
+                  e.preventDefault();
+                  smoothScroll("blogs");
+                }
+              }}
+            >
+              <span className="cd-dot" />
+              <span className="cd-label">Blogs</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#teams"
+              data-number="4"
+              className=""
+              onClick={(e) => {
+                var isMobile = navigator.userAgent.match(
+                  /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i
+                );
+                if (isMobile) {
+                  // if we are on mobile device the scroll into view will be managed by the browser
+                } else {
+                  e.preventDefault();
+                  smoothScroll("teams");
+                }
+              }}
+            >
+              <span className="cd-dot" />
+              <span className="cd-label">Teams</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#projects"
+              data-number="5"
+              className=""
+              onClick={(e) => {
+                var isMobile = navigator.userAgent.match(
+                  /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i
+                );
+                if (isMobile) {
+                  // if we are on mobile device the scroll into view will be managed by the browser
+                } else {
+                  e.preventDefault();
+                  smoothScroll("projects");
+                }
+              }}
+            >
+              <span className="cd-dot" />
+              <span className="cd-label">Projects</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#pricing"
+              data-number="6"
+              className=""
+              onClick={(e) => {
+                var isMobile = navigator.userAgent.match(
+                  /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i
+                );
+                if (isMobile) {
+                  // if we are on mobile device the scroll into view will be managed by the browser
+                } else {
+                  e.preventDefault();
+                  smoothScroll("pricing");
+                }
+              }}
+            >
+              <span className="cd-dot" />
+              <span className="cd-label">Pricing</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#testimonials"
+              data-number="7"
+              className=""
+              onClick={(e) => {
+                var isMobile = navigator.userAgent.match(
+                  /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i
+                );
+                if (isMobile) {
+                  // if we are on mobile device the scroll into view will be managed by the browser
+                } else {
+                  e.preventDefault();
+                  smoothScroll("testimonials");
+                }
+              }}
+            >
+              <span className="cd-dot" />
+              <span className="cd-label">Testimonials</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contacts"
+              data-number="8"
+              className=""
+              onClick={(e) => {
+                var isMobile = navigator.userAgent.match(
+                  /(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i
+                );
+                if (isMobile) {
+                  // if we are on mobile device the scroll into view will be managed by the browser
+                } else {
+                  e.preventDefault();
+                  smoothScroll("contacts");
+                }
+              }}
+            >
+              <span className="cd-dot" />
+              <span className="cd-label">Contact Us</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 }
-// export default function Home({ ...rest }) {
-//   const classes = useStyles();
-//   const settings = {
-//     dots: true,
-//     infinite: true,
-//     speed: 500,
-//     slidesToShow: 1,
-//     slidesToScroll: 1,
-//     autoplay: false,
-//   };
-//   return (
-//     // we've set the className to cd-section so we can make smooth scroll to it
-//     <div className="cd-section" {...rest}>
-//       <div className={classes.sectionBlank} id="blanksection" />
-//       {/* HEADER 1 START */}
-//       <div>
-//         <Header
-//           absolute
-//           brand="Creative Tim"
-//           color="transparent"
-//           links={
-//             <div className={classes.collapse}>
-//               <List className={classes.list + " " + classes.mlAuto}>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     href="#pablo"
-//                     className={classes.navLink}
-//                     onClick={(e) => e.preventDefault()}
-//                     color="transparent"
-//                   >
-//                     Home
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     href="#pablo"
-//                     className={classes.navLink}
-//                     onClick={(e) => e.preventDefault()}
-//                     color="transparent"
-//                   >
-//                     About us
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     href="#pablo"
-//                     className={classes.navLink}
-//                     onClick={(e) => e.preventDefault()}
-//                     color="transparent"
-//                   >
-//                     Products
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     href="#pablo"
-//                     className={classes.navLink}
-//                     onClick={(e) => e.preventDefault()}
-//                     color="transparent"
-//                   >
-//                     Contact us
-//                   </Button>
-//                 </ListItem>
-//               </List>
-//               <List className={classes.list + " " + classes.mlAuto}>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     color="transparent"
-//                     href="https://twitter.com/CreativeTim?ref=creativetim"
-//                     target="_blank"
-//                     className={classes.navLink + " " + classes.navLinkJustIcon}
-//                   >
-//                     <i className={"fab fa-twitter"} />
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     color="transparent"
-//                     href="https://www.facebook.com/CreativeTim?ref=creativetim"
-//                     target="_blank"
-//                     className={classes.navLink + " " + classes.navLinkJustIcon}
-//                   >
-//                     <i className={"fab fa-facebook"} />
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     color="transparent"
-//                     href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-//                     target="_blank"
-//                     className={classes.navLink + " " + classes.navLinkJustIcon}
-//                   >
-//                     <i className={"fab fa-instagram"} />
-//                   </Button>
-//                 </ListItem>
-//               </List>
-//             </div>
-//           }
-//         />
-//         <div
-//           className={classes.pageHeader}
-//           style={{ backgroundImage: `url("${bg12}")` }}
-//         >
-//           <div className={classes.container}>
-//             <GridContainer>
-//               <GridItem xs={12} sm={6} md={6}>
-//                 <h1 className={classes.title}>Tesla Model 3.</h1>
-//                 <h4>
-//                   There{"'"}s no doubt that Tesla is delighted with the
-//                   interest, but the data also raises a few questions. How long
-//                   will it take for Tesla to fulfill all those extra orders?
-//                 </h4>
-//                 <br />
-//                 <Button
-//                   color="danger"
-//                   size="lg"
-//                   href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
-//                   target="_blank"
-//                   rel=""
-//                 >
-//                   <i className="fas fa-ticket-alt" />
-//                   Order Now
-//                 </Button>
-//               </GridItem>
-//               <GridItem xs={12} sm={5} md={5} className={classes.mlAuto}>
-//                 <div className={classes.iframeContainer}>
-//                   <iframe
-//                     height="250"
-//                     src="https://www.youtube.com/embed/IN6QnLpVEPI?ref=creativetim"
-//                     frameBorder="0"
-//                     allow="encrypted-media"
-//                     allowFullScreen=""
-//                     title="Tesla"
-//                   />
-//                 </div>
-//               </GridItem>
-//             </GridContainer>
-//           </div>
-//         </div>
-//       </div>
-//       {/* HEADER 1 END */}
-//       {/* HEADER 2 START */}
-//       <div>
-//         <Header
-//           absolute
-//           brand="Creative Tim"
-//           color="transparent"
-//           links={
-//             <div className={classes.collapse}>
-//               <List className={classes.list + " " + classes.mlAuto}>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     href="#pablo"
-//                     className={classes.navLink}
-//                     onClick={(e) => e.preventDefault()}
-//                     color="transparent"
-//                   >
-//                     Home
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     href="#pablo"
-//                     className={classes.navLink}
-//                     onClick={(e) => e.preventDefault()}
-//                     color="transparent"
-//                   >
-//                     About us
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     href="#pablo"
-//                     className={classes.navLink}
-//                     onClick={(e) => e.preventDefault()}
-//                     color="transparent"
-//                   >
-//                     Products
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     href="#pablo"
-//                     className={classes.navLink}
-//                     onClick={(e) => e.preventDefault()}
-//                     color="transparent"
-//                   >
-//                     Contact us
-//                   </Button>
-//                 </ListItem>
-//               </List>
-//               <List className={classes.list + " " + classes.mlAuto}>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     color="transparent"
-//                     href="https://twitter.com/CreativeTim?ref=creativetim"
-//                     target="_blank"
-//                     className={classes.navLink + " " + classes.navLinkJustIcon}
-//                   >
-//                     <i className={"fab fa-twitter"} />
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     color="transparent"
-//                     href="https://www.facebook.com/CreativeTim?ref=creativetim"
-//                     target="_blank"
-//                     className={classes.navLink + " " + classes.navLinkJustIcon}
-//                   >
-//                     <i className={"fab fa-facebook"} />
-//                   </Button>
-//                 </ListItem>
-//                 <ListItem className={classes.listItem}>
-//                   <Button
-//                     color="transparent"
-//                     href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-//                     target="_blank"
-//                     className={classes.navLink + " " + classes.navLinkJustIcon}
-//                   >
-//                     <i className={"fab fa-instagram"} />
-//                   </Button>
-//                 </ListItem>
-//               </List>
-//             </div>
-//           }
-//         />
-//         <div
-//           className={classes.pageHeader}
-//           style={{ backgroundImage: `url("${office2}")` }}
-//         >
-//           <div className={classes.conatinerHeader2}>
-//             <GridContainer>
-//               <GridItem
-//                 xs={12}
-//                 sm={8}
-//                 md={8}
-//                 className={classNames(
-//                   classes.mlAuto,
-//                   classes.mrAuto,
-//                   classes.textCenter
-//                 )}
-//               >
-//                 <h1 className={classes.title}>You should work with us!</h1>
-//                 <h4>
-//                   Now you have no excuses, it{"'"}s time to surprise your
-//                   clients, your competitors, and why not, the world. You
-//                   probably won
-//                   {"'"}t have a better chance to show off all your potential if
-//                   it{"'"}s not by designing a website for your own agency or web
-//                   studio.
-//                 </h4>
-//               </GridItem>
-//               <GridItem
-//                 xs={12}
-//                 sm={10}
-//                 md={10}
-//                 className={classNames(classes.mlAuto, classes.mrAuto)}
-//               >
-//                 <Card raised className={classes.card}>
-//                   <CardBody formHorizontal>
-//                     <form>
-//                       <GridContainer>
-//                         <GridItem xs={12} sm={3} md={3}>
-//                           <CustomInput
-//                             id="name"
-//                             inputProps={{
-//                               placeholder: "Company name",
-//                             }}
-//                             formControlProps={{
-//                               fullWidth: true,
-//                               className: classes.formControl,
-//                             }}
-//                           />
-//                         </GridItem>
-//                         <GridItem xs={12} sm={3} md={3}>
-//                           <CustomInput
-//                             id="email"
-//                             inputProps={{
-//                               placeholder: "Company email",
-//                             }}
-//                             formControlProps={{
-//                               fullWidth: true,
-//                               className: classes.formControl,
-//                             }}
-//                           />
-//                         </GridItem>
-//                         <GridItem xs={12} sm={3} md={3}>
-//                           <CustomInput
-//                             id="password"
-//                             inputProps={{
-//                               placeholder: "Company password",
-//                               type: "password",
-//                               autoComplete: "off",
-//                             }}
-//                             formControlProps={{
-//                               fullWidth: true,
-//                               className: classes.formControl,
-//                             }}
-//                           />
-//                         </GridItem>
-//                         <GridItem xs={12} sm={3} md={3}>
-//                           <Button
-//                             block
-//                             color="primary"
-//                             className={classes.button}
-//                           >
-//                             Sign up
-//                           </Button>
-//                         </GridItem>
-//                       </GridContainer>
-//                     </form>
-//                   </CardBody>
-//                 </Card>
-//               </GridItem>
-//             </GridContainer>
-//           </div>
-//         </div>
-//       </div>
-//       {/* HEADER 2 END */}
-//       {/* HEADER 3 START */}
-//       <div>
-//         <Header
-//           absolute
-//           brand="Creative Tim"
-//           color="transparent"
-//           links={
-//             <List className={classes.list + " " + classes.mlAuto}>
-//               <ListItem className={classes.listItem}>
-//                 <Button
-//                   href="#pablo"
-//                   className={classes.navLink}
-//                   onClick={(e) => e.preventDefault()}
-//                   color="transparent"
-//                 >
-//                   Home
-//                 </Button>
-//               </ListItem>
-//               <ListItem className={classes.listItem}>
-//                 <Button
-//                   href="#pablo"
-//                   className={classes.navLink}
-//                   onClick={(e) => e.preventDefault()}
-//                   color="transparent"
-//                 >
-//                   About us
-//                 </Button>
-//               </ListItem>
-//               <ListItem className={classes.listItem}>
-//                 <Button
-//                   href="#pablo"
-//                   className={classes.navLink}
-//                   onClick={(e) => e.preventDefault()}
-//                   color="transparent"
-//                 >
-//                   Products
-//                 </Button>
-//               </ListItem>
-//               <ListItem className={classes.listItem}>
-//                 <Button
-//                   href="#pablo"
-//                   className={classes.navLink}
-//                   onClick={(e) => e.preventDefault()}
-//                   color="transparent"
-//                 >
-//                   Contact us
-//                 </Button>
-//               </ListItem>
-//             </List>
-//           }
-//         />
-//         <Carousel {...settings}>
-//           {/* Carousel 1 START */}
-//           <div>
-//             <div
-//               className={classes.pageHeader}
-//               style={{ backgroundImage: `url("${dg1}")` }}
-//             >
-//               <div className={classes.container}>
-//                 <GridContainer>
-//                   <GridItem xs={12} sm={6} md={6}>
-//                     <h1 className={classes.title}>Material Kit PRO React</h1>
-//                     <h4>
-//                       Dolce & Gabbana is a luxury Italian fashion house founded
-//                       in 1985 in Legnano by Italian designers Domenico Dolce and
-//                       Stefano Gabbana. The two met in Milan in 1980 and designed
-//                       for the same fashion house.
-//                     </h4>
-//                     <br />
-//                     <Button color="danger" size="lg">
-//                       Read more
-//                     </Button>
-//                     <Button justIcon color="white" simple>
-//                       <i className="fab fa-twitter" />
-//                     </Button>
-//                     <Button justIcon color="white" simple>
-//                       <i className="fab fa-facebook-square" />
-//                     </Button>
-//                     <Button justIcon color="white" simple>
-//                       <i className="fab fa-get-pocket" />
-//                     </Button>
-//                   </GridItem>
-//                 </GridContainer>
-//               </div>
-//             </div>
-//           </div>
-//           {/* Carousel 1 END */}
-//           {/* Carousel 2 START */}
-//           <div>
-//             <div
-//               className={classes.pageHeader}
-//               style={{ backgroundImage: `url("${dg2}")` }}
-//             >
-//               <div className={classes.container}>
-//                 <GridContainer>
-//                   <GridItem
-//                     xs={12}
-//                     sm={8}
-//                     md={8}
-//                     className={classNames(
-//                       classes.mlAuto,
-//                       classes.mrAuto,
-//                       classes.textCenter
-//                     )}
-//                   >
-//                     <h1 className={classes.title}>Material Kit PRO React</h1>
-//                     <h4>
-//                       Dolce & Gabbana is a luxury Italian fashion house founded
-//                       in 1985 in Legnano by Italian designers Domenico Dolce and
-//                       Stefano Gabbana. The two met in Milan in 1980 and designed
-//                       for the same fashion house.
-//                     </h4>
-//                     <br />
-//                     <h6>Connect with us on:</h6>
-//                     <div>
-//                       <Button color="white" simple size="lg" justIcon>
-//                         <i className="fab fa-twitter" />
-//                       </Button>
-//                       <Button color="white" simple size="lg" justIcon>
-//                         <i className="fab fa-facebook-square" />
-//                       </Button>
-//                       <Button color="white" simple size="lg" justIcon>
-//                         <i className="fab fa-google-plus-g" />
-//                       </Button>
-//                       <Button color="white" simple size="lg" justIcon>
-//                         <i className="fab fa-instagram" />
-//                       </Button>
-//                     </div>
-//                   </GridItem>
-//                 </GridContainer>
-//               </div>
-//             </div>
-//           </div>
-//           {/* Carousel 2 END */}
-//           {/* Carousel 3 START */}
-//           <div>
-//             <div
-//               className={classes.pageHeader}
-//               style={{ backgroundImage: `url("${dg3}")` }}
-//             >
-//               <div className={classes.container}>
-//                 <GridContainer>
-//                   <GridItem
-//                     xs={12}
-//                     sm={7}
-//                     md={7}
-//                     className={classNames(classes.mlAuto, classes.textRight)}
-//                   >
-//                     <h1 className={classes.title}>New Collection 50% Off</h1>
-//                     <h4>
-//                       There{"'"}s no doubt that Tesla is delighted with the
-//                       interest, but the data also raises a few questions. How
-//                       long will it take for Tesla to fulfill all those extra
-//                       orders?
-//                     </h4>
-//                     <br />
-//                     <div>
-//                       <Button color="white" simple size="lg">
-//                         <Share /> Share Offer
-//                       </Button>
-//                       <Button color="danger" size="lg">
-//                         <ShoppingCart /> Shop now
-//                       </Button>
-//                     </div>
-//                   </GridItem>
-//                 </GridContainer>
-//               </div>
-//             </div>
-//           </div>
-//           {/* Carousel 3 END */}
-//         </Carousel>
-//       </div>
-//       {/* HEADER 3 END */}
-//     </div>
-//   );
-// }
