@@ -20,8 +20,6 @@
   },
   "homepage": "https://github.com/anthonylin198/UTutor#readme",
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
     "express": "^4.17.1",
