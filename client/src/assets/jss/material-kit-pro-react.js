@@ -22,7 +22,7 @@
 // // // Example: input = #999 => output = 153, 153, 153
 // // // Example: input = 999 => output = 153, 153, 153
 // #############################
-const hexToRgb = input => {
+const hexToRgb = (input) => {
   input = input + "";
   input = input.replace("#", "");
   let hexRegex = /[0-9A-Fa-f]/g;
@@ -60,7 +60,7 @@ const primaryColor = [
   "#8e24aa",
   "#af2cc5",
   "#e1bee7",
-  "#ba68c8"
+  "#ba68c8",
 ];
 const secondaryColor = ["#fafafa"];
 const warningColor = [
@@ -71,7 +71,7 @@ const warningColor = [
   "#fcf8e3",
   "#faf2cc",
   "#ffe0b2",
-  "#ffb74d"
+  "#ffb74d",
 ];
 const dangerColor = [
   "#f44336",
@@ -81,7 +81,7 @@ const dangerColor = [
   "#f2dede",
   "#ebcccc",
   "ef9a9a",
-  "#ef5350"
+  "#ef5350",
 ];
 const successColor = [
   "#4caf50",
@@ -91,7 +91,7 @@ const successColor = [
   "#dff0d8",
   "#d0e9c6",
   "#a5d6a7",
-  "#66bb6a"
+  "#66bb6a",
 ];
 const infoColor = [
   "#00acc1",
@@ -101,7 +101,7 @@ const infoColor = [
   "#d9edf7",
   "#c4e3f3",
   "#b2ebf2",
-  "#4dd0e1"
+  "#4dd0e1",
 ];
 const roseColor = ["#e91e63", "#ec407a", "#d81b60", "#f8bbd0", "#f06292"];
 const grayColor = [
@@ -130,7 +130,7 @@ const grayColor = [
   "#9a9a9a",
   "#f5f5f5",
   "#505050",
-  "#1f1f1f"
+  "#1f1f1f",
 ];
 const whiteColor = "#FFF";
 const blackColor = "#000";
@@ -147,7 +147,7 @@ const redditColor = "#ff4500";
 const instagramColor = "#125688";
 
 const transition = {
-  transition: "all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)"
+  transition: "all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1)",
 };
 
 const containerFluid = {
@@ -155,22 +155,22 @@ const containerFluid = {
   paddingLeft: "15px",
   marginRight: "auto",
   marginLeft: "auto",
-  width: "100%"
+  width: "100%",
 };
 const container = {
   ...containerFluid,
   "@media (min-width: 576px)": {
-    maxWidth: "540px"
+    maxWidth: "540px",
   },
   "@media (min-width: 768px)": {
-    maxWidth: "720px"
+    maxWidth: "720px",
   },
   "@media (min-width: 992px)": {
-    maxWidth: "960px"
+    maxWidth: "960px",
   },
   "@media (min-width: 1200px)": {
-    maxWidth: "1140px"
-  }
+    maxWidth: "1140px",
+  },
 };
 
 const card = {
@@ -181,13 +181,13 @@ const card = {
   boxShadow: "0 1px 4px 0 rgba(" + hexToRgb(blackColor) + ", 0.14)",
   borderRadius: "3px",
   color: "rgba(" + hexToRgb(blackColor) + ", 0.87)",
-  background: whiteColor
+  background: whiteColor,
 };
 
 const defaultFont = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   fontWeight: "300",
-  lineHeight: "1.5em"
+  lineHeight: "1.5em",
 };
 
 const boxShadow = {
@@ -198,7 +198,7 @@ const boxShadow = {
     hexToRgb(blackColor) +
     ", 0.12), 0 8px 10px -5px rgba(" +
     hexToRgb(blackColor) +
-    ", 0.2)"
+    ", 0.2)",
 };
 const primaryBoxShadow = {
   boxShadow:
@@ -208,7 +208,7 @@ const primaryBoxShadow = {
     hexToRgb(blackColor) +
     ", 0.12), 0 7px 8px -5px rgba(" +
     hexToRgb(primaryColor[0]) +
-    ", 0.2)"
+    ", 0.2)",
 };
 const infoBoxShadow = {
   boxShadow:
@@ -218,7 +218,7 @@ const infoBoxShadow = {
     hexToRgb(blackColor) +
     ", 0.12), 0 7px 8px -5px rgba(" +
     hexToRgb(infoColor[0]) +
-    ", 0.2)"
+    ", 0.2)",
 };
 const successBoxShadow = {
   boxShadow:
@@ -228,7 +228,7 @@ const successBoxShadow = {
     hexToRgb(blackColor) +
     ", 0.12), 0 7px 8px -5px rgba(" +
     hexToRgb(successColor[0]) +
-    ", 0.2)"
+    ", 0.2)",
 };
 const warningBoxShadow = {
   boxShadow:
@@ -238,7 +238,7 @@ const warningBoxShadow = {
     hexToRgb(blackColor) +
     ", 0.12), 0 7px 8px -5px rgba(" +
     hexToRgb(warningColor[0]) +
-    ", 0.2)"
+    ", 0.2)",
 };
 const dangerBoxShadow = {
   boxShadow:
@@ -248,7 +248,7 @@ const dangerBoxShadow = {
     hexToRgb(blackColor) +
     ", 0.12), 0 7px 8px -5px rgba(" +
     hexToRgb(dangerColor[0]) +
-    ", 0.2)"
+    ", 0.2)",
 };
 const roseBoxShadow = {
   boxShadow:
@@ -256,57 +256,57 @@ const roseBoxShadow = {
     hexToRgb(blackColor) +
     ", 0.14), 0 7px 10px -5px rgba(" +
     hexToRgb(roseColor[0]) +
-    ", 0.4)"
+    ", 0.4)",
 };
 
 const warningCardHeader = {
   color: whiteColor,
   background:
     "linear-gradient(60deg, " + warningColor[1] + ", " + warningColor[2] + ")",
-  ...warningBoxShadow
+  ...warningBoxShadow,
 };
 const successCardHeader = {
   color: whiteColor,
   background:
     "linear-gradient(60deg, " + successColor[1] + ", " + successColor[2] + ")",
-  ...successBoxShadow
+  ...successBoxShadow,
 };
 const dangerCardHeader = {
   color: whiteColor,
   background:
     "linear-gradient(60deg, " + dangerColor[1] + ", " + dangerColor[2] + ")",
-  ...dangerBoxShadow
+  ...dangerBoxShadow,
 };
 const infoCardHeader = {
   color: whiteColor,
   background:
     "linear-gradient(60deg, " + infoColor[1] + ", " + infoColor[2] + ")",
-  ...infoBoxShadow
+  ...infoBoxShadow,
 };
 const primaryCardHeader = {
   color: whiteColor,
   background:
     "linear-gradient(60deg, " + primaryColor[1] + ", " + primaryColor[2] + ")",
-  ...primaryBoxShadow
+  ...primaryBoxShadow,
 };
 const roseCardHeader = {
   color: whiteColor,
   background:
     "linear-gradient(60deg, " + roseColor[1] + ", " + roseColor[2] + ")",
-  ...roseBoxShadow
+  ...roseBoxShadow,
 };
 const cardActions = {
   margin: "0 20px 10px",
   paddingTop: "10px",
   borderTop: "1px solid  " + grayColor[2],
   height: "auto",
-  ...defaultFont
+  ...defaultFont,
 };
 
 const cardHeader = {
   margin: "-30px 15px 0",
   borderRadius: "3px",
-  padding: "15px"
+  padding: "15px",
 };
 
 const defaultBoxShadow = {
@@ -321,7 +321,7 @@ const defaultBoxShadow = {
     hexToRgb(blackColor) +
     ", 0.2)",
   padding: "10px 0",
-  transition: "all 150ms ease 0s"
+  transition: "all 150ms ease 0s",
 };
 
 const title = {
@@ -331,7 +331,7 @@ const title = {
   marginTop: "30px",
   marginBottom: "25px",
   minHeight: "32px",
-  fontFamily: `"Roboto Slab", "Times New Roman", serif`
+  fontFamily: `"Roboto Slab", "Times New Roman", serif`,
 };
 
 const cardTitle = {
@@ -339,34 +339,34 @@ const cardTitle = {
     ...title,
     marginTop: ".625rem",
     marginBottom: "0.75rem",
-    minHeight: "auto"
-  }
+    minHeight: "auto",
+  },
 };
 
 const cardLink = {
   "& + $cardLink": {
-    marginLeft: "1.25rem"
-  }
+    marginLeft: "1.25rem",
+  },
 };
 
 const cardSubtitle = {
   marginBottom: "0",
-  marginTop: "-.375rem"
+  marginTop: "-.375rem",
 };
 
 const main = {
   background: whiteColor,
   position: "relative",
-  zIndex: "3"
+  zIndex: "3",
 };
 
 const mainRaised = {
   "@media (max-width: 576px)": {
-    marginTop: "-30px"
+    marginTop: "-30px",
   },
   "@media (max-width: 830px)": {
     marginLeft: "10px",
-    marginRight: "10px"
+    marginRight: "10px",
   },
   margin: "-60px 30px 0px",
   borderRadius: "6px",
@@ -377,12 +377,12 @@ const mainRaised = {
     hexToRgb(blackColor) +
     ", 0.12), 0 8px 10px -5px rgba(" +
     hexToRgb(blackColor) +
-    ", 0.2)"
+    ", 0.2)",
 };
 
 const section = {
   backgroundPosition: "50%",
-  backgroundSize: "cover"
+  backgroundSize: "cover",
 };
 
 const sectionDark = {
@@ -392,35 +392,35 @@ const sectionDark = {
     grayColor[4] +
     " 0," +
     grayColor[5] +
-    " 100%)"
+    " 100%)",
 };
 
 const sectionDescription = {
-  marginTop: "130px"
+  marginTop: "130px",
 };
 
 const description = {
-  color: grayColor[0]
+  color: grayColor[0],
 };
 
 const mlAuto = {
-  marginLeft: "auto"
+  marginLeft: "auto",
 };
 
 const mrAuto = {
-  marginRight: "auto"
+  marginRight: "auto",
 };
 
 const btnLink = {
   backgroundColor: "transparent",
   boxShdow: "none",
   marginTop: "5px",
-  marginBottom: "5px"
+  marginBottom: "5px",
 };
 const coloredShadow = {
   // some jss/css to make the cards look a bit better on Internet Explorer
   "@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)": {
-    display: "none !important"
+    display: "none !important",
   },
   transform: "scale(0.94)",
   top: "12px",
@@ -431,7 +431,7 @@ const coloredShadow = {
   backgroundSize: "cover",
   zIndex: "-1",
   transition: "opacity .45s",
-  opacity: "0"
+  opacity: "0",
 };
 
 export {
@@ -493,5 +493,5 @@ export {
   mrAuto,
   btnLink,
   coloredShadow,
-  hexToRgb
+  hexToRgb,
 };

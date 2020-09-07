@@ -42,7 +42,7 @@ export default function SectionHeaders({ ...rest }) {
   return (
     // we've set the className to cd-section so we can make smooth scroll to it
     <div className="cd-section" {...rest}>
-      <div className={classes.sectionBlank} id="blanksection" />
+      {/* <div className={classes.sectionBlank} id="blanksection" /> */}
       {/* HEADER 1 START */}
       <div>
         <Header

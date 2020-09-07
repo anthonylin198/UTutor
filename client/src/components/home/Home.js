@@ -85,12 +85,13 @@ export default function Home() {
   const classes = useStyles();
   return (
     <div>
-      <Header
+      {/* <SectionHeaders id="headers" /> */}
+      {/* <Header
         color="info"
         brand="Material Kit PRO React"
         links={<HeaderLinks dropdownHoverColor="info" />}
         fixed
-      />
+      /> */}
       <div className={classes.main}>
         <SectionHeaders id="headers" />
         {/* <SectionFeatures id="features" />
