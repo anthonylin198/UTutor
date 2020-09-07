@@ -10,14 +10,14 @@ import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import Share from "@material-ui/icons/Share";
 import ShoppingCart from "@material-ui/icons/ShoppingCart";
-// core components
-import Header from "components/Header/Header.js";
-import Button from "components/CustomButtons/Button.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
+// core components -- comes from material-ui folder
+import Header from "../../material-ui/Header";
+import Button from "../../material-ui/Button.js";
+import GridContainer from "../../material-ui/GridContainer.js";
+import GridItem from "../../material-ui/GridItem.js";
+import Card from "../../material-ui/Card.js";
+import CardBody from "../../material-ui/CardBody.js";
+import CustomInput from "../../material-ui/CustomInput.js";
 
 import headersStyle from "../../../assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle";
 

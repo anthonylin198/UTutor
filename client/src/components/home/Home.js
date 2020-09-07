@@ -2,9 +2,9 @@ import React from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
-// core components
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
+// core components - fromt materialui folder
+import Header from "../material-ui/Header";
+import HeaderLinks from "../material-ui/HeaderLinks";
 // sections of this Page
 import SectionHeaders from "./Sections/SectionHeaders.js";
 // import SectionFeatures from "./Sections/SectionFeatures.js";
