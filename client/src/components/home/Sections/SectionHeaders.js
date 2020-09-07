@@ -103,14 +103,10 @@ export default function SectionHeaders({ ...rest }) {
                 )}
               >
                 <h1 className={classes.title}>Find Your Tutor</h1>
-                {/* <h4>
-                  Now you have no excuses, it{"'"}s time to surprise your
-                  clients, your competitors, and why not, the world. You
-                  probably won
-                  {"'"}t have a better chance to show off all your potential if
-                  it{"'"}s not by designing a website for your own agency or web
-                  studio.
-                </h4> */}
+                <h4>
+                  Find top tutors and mentors that have aced your class from
+                  your University
+                </h4>
               </GridItem>
               <GridItem
                 xs={12}

@@ -22,19 +22,19 @@ const headersSection = (theme) => ({
       color: whiteColor,
     },
   },
-  conatinerHeader2: {
+  containerHeader2: {
     ...container,
     zIndex: "2",
     position: "relative",
     "& h1, & h4, & h6": {
       color: whiteColor,
     },
-    paddingTop: "25vh",
+    paddingTop: "20vh",
   },
   title,
   pageHeader: {
     position: "relative",
-    height: "100vh",
+    height: "70vh",
     maxHeight: "1600px",
     backgroundPosition: "50%",
     backgroundSize: "cover",
