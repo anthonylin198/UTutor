@@ -40,7 +40,7 @@ export default function SectionBlogs({ ...rest }) {
               md={10}
               className={classes.mlAuto + " " + classes.mrAuto}
             >
-              <h2 className={classes.title}>Latest Blogposts</h2>
+              <h2 className={classes.title}>Featured Tutors</h2>
               <br />
               <Card plain blog className={classes.card}>
                 <GridContainer>

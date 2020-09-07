@@ -69,7 +69,7 @@ export default function SectionHeaders({ ...rest }) {
                     onClick={(e) => e.preventDefault()}
                     color="transparent"
                   >
-                    About us
+                    Become a Tutor
                   </Button>
                 </ListItem>
                 <ListItem className={classes.listItem}>
