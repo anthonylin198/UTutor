@@ -39,10 +39,10 @@ import LineStyle from "@material-ui/icons/LineStyle";
 import Error from "@material-ui/icons/Error";
 
 // core components from material ui
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
+import CustomDropdown from "../material-ui/Button";
 import Button from "../material-ui/Button";
 
-import styles from "assets/jss/material-kit-pro-react/components/headerLinksStyle.js";
+import styles from "../../../src/assets/jss/material-kit-pro-react/components/headerLinksStyle";
 
 const useStyles = makeStyles(styles);
 

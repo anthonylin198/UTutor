@@ -1,4 +1,4 @@
-import headerLinksStyle from "../../../../jss/material-kit-pro-react/components/headerLinkStyle";
+import headerLinksStyle from "../../components/headerLinksStyle";
 import {
   container,
   mrAuto,
