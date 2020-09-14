@@ -45,23 +45,22 @@ UTutor is an open source marketplace application for University tutors to buy an
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
 
 ```sh
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/anthonylin198/UTutor.git
 ```
 
-3. Install NPM packages
+2. Install NPM packages
 
 ```sh
 npm install
 ```
 
-4. Enter your URI in `config.js`
+3. Start the Project
 
-```JS
-const API_KEY = 'ENTER YOUR API';
+```sh
+npm start
 ```
 
 <!-- CONTRIBUTING -->
